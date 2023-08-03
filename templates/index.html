@@ -1,0 +1,20 @@
+<html>
+<head>
+</head>
+
+<body>
+ <div class="review">
+	<h1>Search</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('review')}}" method="post">
+        <input type="text" name="content" required="required" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Search</button>
+    </form>
+
+   <br>
+   <br>
+ </div>
+
+</body>
+</html>
