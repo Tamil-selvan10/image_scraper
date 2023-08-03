@@ -64,8 +64,8 @@ def review():
                    f.write(image_data)
 
             client=pymongo.MongoClient('mongodb+srv://etamilselvan2710111996:Valliammal11@cluster0.sgeazoo.mongodb.net/?retryWrites=true&w=majority')
-            db=client['Cluster0']
-            review_col=db['img_scrap_data']
+            db=client['img_scrap_db']
+            review_col=db['img_scrap_collection']
             review_col.insert_many(img_data)
 
             return 'image loaded'
