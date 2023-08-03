@@ -72,7 +72,8 @@ def review():
 
         except Exception as e:
             logging.info(e)
-            return 'something is wrong'
+            error=e
+            return f'something is wrong- {error}'
 
 
     else:
