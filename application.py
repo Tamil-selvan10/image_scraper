@@ -11,8 +11,9 @@ logging.basicConfig(level=logging.INFO,
                     datefmt='%d-%B-%Y %H:%M:%S')
 
 
-app = Flask(__name__)
+application = Flask(__name__)
 
+app=application
 
 @app.route('/',methods=['GET'])
 def homepage():
