@@ -3,6 +3,7 @@ from flask import Flask, request, render_template,url_for
 import requests
 from bs4 import BeautifulSoup
 import logging
+import pymongo
 import os
 logging.basicConfig(level=logging.INFO,
                     filename='scrapper.log',
@@ -46,6 +47,8 @@ def review():
             image_tags = soup.find_all('img')
 
             del image_tags[0]
+            
+            img_data=list()
 
             for index, image_tag in enumerate(image_tags):
                  # get image url from the src tag
@@ -54,8 +57,16 @@ def review():
                 filename = f'{query}_{index}.jpg'
                 filepath = os.path.join(save_dir, filename)
 
+                my_dict={'Index':index,'Image':image_data}
+                img_data.append(my_dict)
+
                 with open(filepath, 'wb') as f:
                    f.write(image_data)
+
+            client=pymongo.MongoClient('mongodb+srv://etamilselvan2710111996:Valliammal11@cluster0.sgeazoo.mongodb.net/?retryWrites=true&w=majority')
+            db=client['Cluster0']
+            review_col=db['img_scrap_data']
+            review_col.insert_many(img_data)
 
             return 'image loaded'
 
